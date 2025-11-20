@@ -115,6 +115,14 @@ export const INTERPRETER_NEEDED = [
 ] as const;
 
 /**
+ * A1805 - Optional Contact
+ */
+export const OPTIONAL_CONTACT = [
+  { value: "0", label: "No" },
+  { value: "1", label: "Yes" },
+] as const;
+
+/**
  * A1400 - Payer Information Options
  * "Check all existing payer sources that apply"
  */
