@@ -154,6 +154,36 @@ export function FormCheckboxGroup({
                     id={fieldName}
                     checked={field.value || false}
                     onCheckedChange={(checked) => {
+                      /**
+                       * CMS MUTUAL EXCLUSIVITY RULE:
+                       * Option "Z" (None of the above) is mutually exclusive with other options
+                       * 
+                       * LOGIC:
+                       * 1. If checking "Z", uncheck all other options in this group
+                       * 2. If checking any other option, uncheck "Z" if it's selected
+                       * 
+                       * This ensures CMS-compliant data where "None of the above"
+                       * cannot coexist with actual selections
+                       */
+                      const isZOption = option.value === "Z";
+                      const isBeingChecked = checked === true;
+
+                      if (isZOption && isBeingChecked) {
+                        // Checking "Z" - uncheck all other options
+                        options.forEach((opt) => {
+                          if (opt.value !== "Z") {
+                            form.setValue(`${name}.${opt.value}`, false);
+                          }
+                        });
+                      } else if (!isZOption && isBeingChecked) {
+                        // Checking a regular option - uncheck "Z" if it's selected
+                        const zFieldName = `${name}.Z`;
+                        const zValue = form.getValues(zFieldName);
+                        if (zValue === true) {
+                          form.setValue(zFieldName, false);
+                        }
+                      }
+
                       // Cast CheckedState to boolean for CMS compliance
                       // Prevents "indeterminate" string from leaking into form data
                       field.onChange(checked === true);
