@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import { ArrowLeft, Save, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Footer from "@/components/layout/Footer";
 import {
   SectionA,
   SectionJ,
@@ -262,6 +263,7 @@ export default function AdmissionAssessment() {
           </motion.div>
         </form>
       </main>
+      <Footer />
     </div>
   );
 }
