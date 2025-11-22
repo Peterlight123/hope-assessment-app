@@ -4,12 +4,13 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { FileText, ClipboardList, FileCheck, Stethoscope } from "lucide-react";
 import Footer from "@/components/layout/Footer";
+import FAQChatbot from "@/components/Chatbot/FAQChatbot";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50 flex flex-col">
       {/* Header */}
-      <header className="bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg">
+      <header className="bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex items-center justify-between">
             <motion.div
@@ -55,7 +56,7 @@ export default function Home() {
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
             A professional data entry interface designed for CMS-compliant hospice patient assessments.
-            Supporting clinicians in delivering the highest quality of care with precision and ease.
+            Empowering clinicians to deliver compassionate care with precision, ease, and confidence.
           </p>
         </motion.div>
 
@@ -92,19 +93,39 @@ export default function Home() {
           className="bg-white rounded-xl shadow-lg p-10 border border-gray-100"
         >
           <div className="mb-8">
-            <h3 className="text-3xl font-bold text-gray-900">Key Features</h3>
-            <p className="text-gray-600 mt-2">Everything you need for professional assessments</p>
+            <h3 className="text-3xl font-bold text-gray-900">Why HOPE Assessment?</h3>
+            <p className="text-gray-600 mt-2">Everything clinicians need for professional, compliant assessments</p>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             <Feature text="CMS HOPE v1.01 compliant data collection" />
             <Feature text="WCAG 2.1 AA accessible interface" />
             <Feature text="Auto-save functionality to prevent data loss" />
-            <Feature text="Conditional logic and skip patterns" />
-            <Feature text="Section-based navigation" />
-            <Feature text="Built-in guidance tooltips" />
+            <Feature text="Intelligent conditional logic and skip patterns" />
+            <Feature text="Section-based navigation with progress tracking" />
+            <Feature text="AI-powered FAQ chatbot for instant support" />
+            <Feature text="Professional responsive design" />
+            <Feature text="Real-time validation and guidance tooltips" />
           </div>
         </motion.div>
+
+        {/* Security & Compliance */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 rounded-xl p-8 mt-20"
+        >
+          <h3 className="text-2xl font-bold mb-4 text-blue-900">Enterprise-Grade Security & Compliance</h3>
+          <p className="text-blue-800 leading-relaxed">
+            Built on Next.js 16 with TypeScript, our platform meets CMS standards for healthcare data handling.
+            Support for modern browsers ensures your data remains secure while providing an optimal user experience
+            for clinicians across all devices.
+          </p>
+        </motion.div>
       </main>
+
+      {/* FAQ Chatbot */}
+      <FAQChatbot />
 
       {/* Footer */}
       <Footer />
@@ -130,24 +151,13 @@ function AssessmentCard({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
-      whileHover={{ y: -5 }}
+      whileHover={{ y: -8 }}
     >
       <Link href={href}>
-        <div className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 p-8 h-full border-2 border-gray-100 hover:border-blue-500 cursor-pointer group overflow-hidden relative">
-          {/* Gradient background on hover */}
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          
-          <div className="relative z-10">
-            <div className="text-blue-600 mb-4 group-hover:scale-110 transition-transform duration-300">
-              {icon}
-            </div>
-            <h3 className="text-xl font-bold text-gray-900 mb-3">{title}</h3>
-            <p className="text-gray-600 mb-6">{description}</p>
-            <div className="text-blue-600 font-semibold group-hover:translate-x-2 transition-transform duration-300 inline-flex items-center">
-              Start Assessment
-              <span className="ml-2">→</span>
-            </div>
-          </div>
+        <div className="bg-white border border-gray-200 rounded-xl p-8 h-full cursor-pointer transition-all duration-300 hover:shadow-xl">
+          <div className="text-blue-600 mb-4">{icon}</div>
+          <h3 className="text-xl font-bold mb-2 text-gray-900">{title}</h3>
+          <p className="text-gray-600">{description}</p>
         </div>
       </Link>
     </motion.div>
@@ -159,24 +169,16 @@ function Feature({ text }: { text: string }) {
     <motion.div
       initial={{ opacity: 0, x: -10 }}
       whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.4 }}
       viewport={{ once: true }}
       className="flex items-start gap-3"
     >
-      <div className="flex-shrink-0 mt-1">
-        <svg
-          className="w-5 h-5 text-blue-600"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-        >
-          <path
-            fillRule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-            clipRule="evenodd"
-          />
+      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center mt-1">
+        <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
         </svg>
       </div>
-      <span className="text-gray-700 text-sm md:text-base">{text}</span>
+      <p className="text-gray-700">{text}</p>
     </motion.div>
   );
 }

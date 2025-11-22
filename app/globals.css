@@ -6,10 +6,25 @@
   body {
     @apply antialiased;
   }
+
+  /* Dark mode support */
+  html.dark {
+    color-scheme: dark;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Smooth transitions for theme switching */
+  * {
+    @apply transition-colors duration-200;
+  }
+
+  /* Prevent transition on visibility changes */
+  html.dark * {
+    @apply transition-colors duration-200;
   }
 }

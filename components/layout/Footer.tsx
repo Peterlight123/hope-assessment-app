@@ -106,7 +106,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-xs text-gray-500">
-            Built with Next.js, TypeScript, and Tailwind CSS
+            Built with Next.js 16, TypeScript, and Tailwind CSS • Professional & Accessible
           </p>
         </motion.div>
       </div>
